@@ -23,7 +23,6 @@ _SONGS_CSV = _DATA_DIR / "songs.csv"
 
 def main() -> None:
     songs = load_songs(str(_SONGS_CSV))
-    print(f"Loaded songs: {len(songs)}")
 
     # Starter example profile (keys must match score_song / README)
     user_prefs = {
@@ -34,14 +33,19 @@ def main() -> None:
 
     recommendations = recommend_songs(user_prefs, songs, k=5)
 
-    print("\nTop recommendations:\n")
     for rec in recommendations:
         song = rec["song"]
         score = rec["score"]
         reasons = rec["reasons"]
-        explanation = "; ".join(reasons)
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"Because: {explanation}")
+
+        print("---")
+        print()
+        print(f"🎵 Song: {song['title']}")
+        print(f"⭐ Score: {score:.2f}")
+        print("📌 Reasons:")
+        print()
+        for reason in reasons:
+            print(f"  * {reason}")
         print()
 
 

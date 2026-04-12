@@ -52,7 +52,7 @@ class Recommender:
         return "Explanation placeholder"
 
 def load_songs(csv_path: str) -> List[Dict]:
-    """Load song rows from a CSV file into a list of dictionaries with typed values."""
+    """Load songs from a CSV file; returns a list of dicts with typed numeric fields."""
     songs: List[Dict] = []
     with open(csv_path, newline="", encoding="utf-8") as csv_file:
         reader = csv.DictReader(csv_file)
@@ -70,7 +70,7 @@ def load_songs(csv_path: str) -> List[Dict]:
 
 
 def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
-    """Return a total match score and human-readable reasons for this song vs. user preferences."""
+    """Score a song against user preferences (genre, mood, energy); returns (score, reasons)."""
     score = 0.0
     reasons: List[str] = []
 
@@ -91,7 +91,7 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
 
 
 def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Dict[str, Any]]:
-    """Rank all songs by match score and return the top k with scores and reasons."""
+    """Score every song, rank by match score descending, and return the top k with scores and reasons."""
     scored: List[Dict[str, Any]] = []
     for song in songs:
         score, reasons = score_song(user_prefs, song)

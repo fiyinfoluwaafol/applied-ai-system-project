@@ -66,6 +66,7 @@ This profile represents a **high-energy happy pop** listener — someone who rea
 
 **Why this profile differentiates well.** Consider two contrasting styles from the catalog. A *chill lofi* track like "Library Rain" (genre: lofi, mood: chill, energy: 0.35) mismatches on all three dimensions — wrong genre, wrong mood, and its energy sits 0.45 away from the target. An *intense rock* track like "Storm Runner" (genre: rock, mood: intense, energy: 0.91) also mismatches on genre and mood, but its energy is only 0.11 away. Even though rock is closer in energy, the genre and mood mismatches keep it well below a true pop/happy match. This means the scoring system can clearly separate the user's preferred vibe from very different listening experiences, which is exactly what a useful recommender needs to do.
 
+![CLI Recommender Output](cli-output.png)
 ---
 
 ## Getting Started
