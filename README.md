@@ -31,6 +31,12 @@ flowchart TD
     D --> E[Top K Recommendations]
 ```
 
+### Example CLI Output
+
+Here’s how the recommender output looks when run in the terminal with a standard profile:
+
+![CLI Recommender Output](cli-output.png)
+
 ### Song Features Used in Scoring
 
 - **genre** — broad musical category (e.g. pop, lofi, rock)
@@ -67,6 +73,10 @@ The system was evaluated against **five profiles** defined in `src/main.py` — 
 | Chill Lofi | lofi | chill | 0.38 |
 | Deep Intense Rock | rock | intense | 0.90 |
 
+Here’s an example of the stress test output using the three standard user profiles:
+
+![Standard Profile Stress Test Output](stress-test_standard-profile.png)
+
 **Adversarial / edge-case profiles:**
 
 | Profile | Genre | Mood | Energy | Purpose |
@@ -74,11 +84,11 @@ The system was evaluated against **five profiles** defined in `src/main.py` — 
 | EDGE: Classical + High Energy (conflict) | classical | intense | 0.95 | Genre and energy conflict — the only classical song has very low energy |
 | EDGE: Hip-Hop Melancholic (no exact match) | hip-hop | melancholic | 0.50 | No song in the catalog matches both hip-hop and melancholic |
 
-The **High-Energy Pop** profile is a good example of how the three features work together. Genre (`"pop"`) anchors the listener's broad taste, mood (`"happy"`) narrows to feel-good tracks, and energy (`0.85`) pins the intensity level. A chill lofi track like "Library Rain" (energy 0.35) mismatches on all three dimensions, while an intense rock track like "Storm Runner" (energy 0.91) is close in energy but fails on genre and mood — so the scoring clearly separates the user's preferred vibe from very different listening styles.
+These edge-case profiles were used to expose system weaknesses:
 
-![CLI Recommender Output](cli-output.png)
-![Standard Profile Stress Test Output](stress-test_standard-profile.png)
 ![Edge Profile Stress Test Output](stress-test_edge-profile.png)
+
+The **High-Energy Pop** profile is a good example of how the three features work together. Genre (`"pop"`) anchors the listener's broad taste, mood (`"happy"`) narrows to feel-good tracks, and energy (`0.85`) pins the intensity level. A chill lofi track like "Library Rain" (energy 0.35) mismatches on all three dimensions, while an intense rock track like "Storm Runner" (energy 0.91) is close in energy but fails on genre and mood — so the scoring clearly separates the user's preferred vibe from very different listening styles.
 
 ---
 
