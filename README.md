@@ -71,8 +71,8 @@ The system was evaluated against **five profiles** defined in `src/main.py` — 
 
 | Profile | Genre | Mood | Energy | Purpose |
 |---------|-------|------|--------|---------|
-| EDGE: Classical + High Energy | classical | intense | 0.95 | Genre and energy conflict — the only classical song has very low energy |
-| EDGE: Hip-Hop Melancholic | hip-hop | melancholic | 0.50 | No song in the catalog matches both hip-hop and melancholic |
+| EDGE: Classical + High Energy (conflict) | classical | intense | 0.95 | Genre and energy conflict — the only classical song has very low energy |
+| EDGE: Hip-Hop Melancholic (no exact match) | hip-hop | melancholic | 0.50 | No song in the catalog matches both hip-hop and melancholic |
 
 The **High-Energy Pop** profile is a good example of how the three features work together. Genre (`"pop"`) anchors the listener's broad taste, mood (`"happy"`) narrows to feel-good tracks, and energy (`0.85`) pins the intensity level. A chill lofi track like "Library Rain" (energy 0.35) mismatches on all three dimensions, while an intense rock track like "Storm Runner" (energy 0.91) is close in energy but fails on genre and mood — so the scoring clearly separates the user's preferred vibe from very different listening styles.
 
@@ -124,8 +124,8 @@ You can add more tests in `tests/test_recommender.py`.
 
 All five user profiles (three standard, two adversarial) were run against the full 19-song catalog. Standard profiles produced intuitive results — the pop listener got pop songs at the top, the lofi listener got lofi songs. The adversarial profiles revealed weaknesses:
 
-- **Classical + High Energy:** The only classical song (Riverbend Sonata, energy 0.18) still ranked first despite a 0.77 energy gap, because the genre bonus alone (2.0 pts) overwhelmed everything else.
-- **Hip-Hop Melancholic:** No song matches both hip-hop and melancholic, so the system fell back to partial matches. The lone hip-hop track ranked first on genre alone, even though a folk or blues song might have been a better emotional fit.
+- **EDGE: Classical + High Energy (conflict):** The only classical song (Riverbend Sonata, energy 0.18) still ranked first despite a 0.77 energy gap, because the genre bonus alone (2.0 pts) overwhelmed everything else.
+- **EDGE: Hip-Hop Melancholic (no exact match):** No song matches both hip-hop and melancholic, so the system fell back to partial matches. The lone hip-hop track ranked first on genre alone, even though a folk or blues song might have been a better emotional fit.
 
 ### Weight-Shift Experiment (Genre ↓, Energy ↑)
 
@@ -157,9 +157,9 @@ See the [Model Card](model_card.md) for a deeper discussion of biases and fairne
 
 ## Reflection
 
-[**Model Card**](model_card.md)
+[**Model Card (full personal reflection)**](model_card.md#personal-reflection)
 
-Building this recommender showed how a simple scoring formula — just three weighted signals — can produce surprisingly intuitive results for straightforward listener profiles, but also how quickly it breaks down at the edges. The weight-shift experiment was the clearest lesson: changing a single constant (genre from 2.0 to 1.0) reshuffled entire top-5 lists, which mirrors how real-world recommendation systems can develop hidden biases that are hard to detect without deliberate adversarial testing.
+[**Technical evaluation notes**](reflection.md) — profile-by-profile comparisons and takeaways from testing.
 
-The project also highlighted how much the dataset matters independent of the algorithm. With only 19 songs and most genres represented by a single track, any bias in the catalog becomes a bias in the output. If the catalog had five pop songs but only one classical song, a pop listener gets variety while a classical listener gets the same track every time — not because the algorithm is unfair, but because the data is. This is a useful reminder that in real AI systems, bias is often a data problem as much as (or more than) a model problem.
+In short: this project is **content-based** scoring (genre, mood, energy) over a tiny catalog. Simple rules can look smart until an edge profile or a weight change exposes how fragile the rankings are. The weight-shift experiment and the adversarial profiles were the most useful checks because they showed *when* to trust the list and *when* not to.
 

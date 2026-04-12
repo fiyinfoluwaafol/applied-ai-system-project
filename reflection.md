@@ -1,5 +1,11 @@
 # Reflection — Music Recommender Evaluation
 
+**Personal reflection (prompts: biggest learning moment, AI tools, surprises, next steps):** see [`model_card.md`](model_card.md#personal-reflection) — *Personal Reflection* section.
+
+This file is **technical evaluation notes** (profile-by-profile comparisons).
+
+---
+
 ## Profile-by-Profile Comparisons
 
 ### High-Energy Pop vs. Chill Lofi
