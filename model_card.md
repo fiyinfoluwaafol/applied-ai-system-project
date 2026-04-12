@@ -10,23 +10,25 @@
 
 This recommender suggests 3–5 songs from a small catalog based on a user's preferred genre, mood, and energy level. It is designed for classroom exploration of content-based recommendation systems, not for real production use.
 
+**Not intended for:** real music streaming platforms, commercial use, or any context where recommendations influence what real listeners hear. The catalog is too small (19 songs) and the scoring too simplistic to serve as a production system.
+
 ---
 
 ## 3. How the Model Works
 
 For every song in the catalog the system checks three things:
 
-1. **Genre match** — if the song's genre equals the user's favorite genre, it earns bonus points.
-2. **Mood match** — if the song's mood equals the user's favorite mood, it earns additional points.
-3. **Energy similarity** — the closer the song's energy value is to the user's target, the more points it receives (continuous, not binary).
+1. **Genre match** — if the song's genre equals the user's favorite genre, it earns **2.0 points**.
+2. **Mood match** — if the song's mood equals the user's favorite mood, it earns **1.0 point**.
+3. **Energy similarity** — the closer the song's energy value is to the user's target, the more points it receives (up to **1.0 point**). This is a continuous score, not a yes/no check.
 
-These three scores are added together. Songs are ranked from highest to lowest total score, and the top results are returned as recommendations.
+These three scores are added together (max possible: 4.0). Songs are ranked from highest to lowest total score, and the top 5 are returned as recommendations.
 
 ---
 
 ## 4. Data
 
-The catalog is `data/songs.csv` containing **19 songs** across 16 genres (pop, lofi, rock, ambient, jazz, synthwave, indie pop, country, metal, folk, house, classical, hip-hop, blues, reggae, r&b) and 13 moods. Most genres have only one representative song, so the dataset is small and not balanced — some listening styles have very few or no matching songs.
+The catalog is `data/songs.csv` containing **19 songs** with 10 columns: `id`, `title`, `artist`, `genre`, `mood`, `energy`, `tempo_bpm`, `valence`, `danceability`, and `acousticness`. It spans **16 genres** (pop, lofi, rock, ambient, jazz, synthwave, indie pop, country, metal, folk, house, classical, hip-hop, blues, reggae, r&b) and **13 moods** (happy, chill, intense, relaxed, moody, focused, nostalgic, melancholic, euphoric, peaceful, confident, soulful, romantic). Most genres have only one representative song, so the dataset is small and not balanced — some listening styles have very few or no matching songs. No songs were added or removed from the starter dataset.
 
 ---
 
@@ -54,7 +56,7 @@ Finally, mood and genre are treated as exact string matches — "happy" and "eup
 
 ### Process
 
-The recommender was tested against **5 user profiles**: three standard archetypes (High-Energy Pop, Chill Lofi, Deep Intense Rock) and two adversarial edge cases (Classical + High Energy, Hip-Hop Melancholic). For each profile the top 5 songs, scores, and scoring reasons were inspected.
+The recommender was tested against **5 user profiles** defined in `src/main.py`: three standard archetypes (High-Energy Pop, Chill Lofi, Deep Intense Rock) and two adversarial edge cases (EDGE: Classical + High Energy, EDGE: Hip-Hop Melancholic). For each profile the top 5 songs, scores, and scoring reasons were inspected.
 
 ### Observed Behavior
 

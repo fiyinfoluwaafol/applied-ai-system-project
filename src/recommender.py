@@ -6,9 +6,9 @@ from dataclasses import dataclass
 # Original weights: GENRE 2.0, MOOD 1.0, ENERGY 1.0
 # Experiment: halve genre (2.0 → 1.0), double energy (1.0 → 2.0) to test
 # whether genre was over-weighted in the baseline scoring.
-GENRE_MATCH_POINTS = 1.0
+GENRE_MATCH_POINTS = 2.0
 MOOD_MATCH_POINTS = 1.0
-ENERGY_SIMILARITY_WEIGHT = 2.0
+ENERGY_SIMILARITY_WEIGHT = 1.0
 
 @dataclass
 class Song:
