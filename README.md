@@ -21,6 +21,16 @@ Real-world music apps often blend several ideas. **Collaborative filtering** lea
 
 The simulation **prioritizes** three signals, in order of importance you can tune with weights: **genre** (broad musical category), **mood** (emotional vibe), and **energy similarity** (how close the song’s energy is to the user’s target, not simply “high” or “low” energy). Songs get a **numeric score** from these pieces; the **highest-scoring** songs surface as top recommendations.
 
+### System Flow Diagram
+
+```mermaid
+flowchart TD
+    A[User Profile] --> C[Score Each Song]
+    B[Song Dataset (CSV)] --> C
+    C --> D[Rank Songs]
+    D --> E[Top K Recommendations]
+```
+
 ### Song Features
 
 - genre
