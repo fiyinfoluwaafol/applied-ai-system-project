@@ -26,7 +26,7 @@ The simulation **prioritizes** three signals, in order of importance you can tun
 ```mermaid
 flowchart TD
     A[User Profile] --> C[Score Each Song]
-    B[Song Dataset (CSV)] --> C
+    B["Song Dataset (CSV)"] --> C
     C --> D[Rank Songs]
     D --> E[Top K Recommendations]
 ```
