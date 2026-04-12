@@ -9,11 +9,21 @@ You will implement the functions in recommender.py:
 - recommend_songs
 """
 
-from recommender import load_songs, recommend_songs
+from pathlib import Path
+
+try:
+    from src.recommender import load_songs, recommend_songs
+except ModuleNotFoundError:
+    from recommender import load_songs, recommend_songs
+
+# Project root (parent of `src/`), so data path works whether you run from repo root or from `src/`
+_DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+_SONGS_CSV = _DATA_DIR / "songs.csv"
 
 
 def main() -> None:
-    songs = load_songs("data/songs.csv") 
+    songs = load_songs(str(_SONGS_CSV))
+    print(f"Loaded songs: {len(songs)}")
 
     # Starter example profile
     user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
