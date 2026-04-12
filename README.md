@@ -36,6 +36,26 @@ The simulation **prioritizes** three signals, in order of importance you can tun
 
 **In simple terms:** for every song, the recommender adds points when the genre and mood match the profile, and adds a **similarity** score for energy (closer to `target_energy` means more points). It then **ranks** all songs by that total score and returns the best matches—usually the top few—for the user to see.
 
+### User Taste Profile
+
+The user profile that drives this recommender is:
+
+```python
+user_profile = {
+    "favorite_genre": "pop",
+    "favorite_mood": "happy",
+    "target_energy": 0.80
+}
+```
+
+This profile represents a **high-energy happy pop** listener — someone who reaches for upbeat, feel-good pop tracks that keep the energy up, like workout playlists or sunny-day driving music. The three features work together to capture that vibe:
+
+- **Genre (`"pop"`)** anchors the listener's broad musical taste and filters out unrelated categories like rock, lofi, or classical right away.
+- **Mood (`"happy"`)** narrows within pop to the optimistic, feel-good end of the spectrum, ruling out pop songs that might be moody or melancholic.
+- **Energy (`0.80`)** pins down the intensity level — high enough to feel lively and uplifting, but not maxed-out like a metal track. Because energy is a continuous value (0.0–1.0), the system can measure *how close* any song is to this target rather than making a simple yes/no decision.
+
+**Why this profile differentiates well.** Consider two contrasting styles from the catalog. A *chill lofi* track like "Library Rain" (genre: lofi, mood: chill, energy: 0.35) mismatches on all three dimensions — wrong genre, wrong mood, and its energy sits 0.45 away from the target. An *intense rock* track like "Storm Runner" (genre: rock, mood: intense, energy: 0.91) also mismatches on genre and mood, but its energy is only 0.11 away. Even though rock is closer in energy, the genre and mood mismatches keep it well below a true pop/happy match. This means the scoring system can clearly separate the user's preferred vibe from very different listening experiences, which is exactly what a useful recommender needs to do.
+
 ---
 
 ## Getting Started
