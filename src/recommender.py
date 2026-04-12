@@ -1,5 +1,5 @@
 import csv
-from typing import List, Dict, Tuple, Optional
+from typing import List, Dict, Tuple, Optional, Any
 from dataclasses import dataclass
 
 # Algorithm recipe (README: genre first, then mood, then energy similarity; genre 2.0 in Experiments)
@@ -90,11 +90,14 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     return (score, reasons)
 
 
-def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, str]]:
-    """
-    Functional implementation of the recommendation logic.
-    Required by src/main.py
-    """
-    # TODO: Implement scoring and ranking logic
-    # Expected return format: (song_dict, score, explanation)
-    return []
+def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Dict[str, Any]]:
+    """Rank all songs by match score and return the top k with scores and reasons."""
+    scored: List[Dict[str, Any]] = []
+    for song in songs:
+        score, reasons = score_song(user_prefs, song)
+        scored.append({"song": song, "score": score, "reasons": reasons})
+
+    ranked = sorted(scored, key=lambda row: row["score"], reverse=True)
+    if k <= 0:
+        return []
+    return ranked[:k]
