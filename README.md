@@ -17,17 +17,24 @@ Replace this paragraph with your own summary of what your version does.
 
 ## How The System Works
 
-Explain your design in plain language.
+Real-world music apps often blend several ideas. **Collaborative filtering** learns from what many users play, skip, or like—*people who liked X also liked Y*—without needing to know why a song “fits.” **Content-based** methods look at the songs themselves: genre, mood, energy, and other tags or audio features, then match them to what this user says they want. This project is **content-based**: each recommendation is driven by how well a song’s **features** align with **your user profile**, not by crowd behavior from millions of listeners.
 
-Some prompts to answer:
+The simulation **prioritizes** three signals, in order of importance you can tune with weights: **genre** (broad musical category), **mood** (emotional vibe), and **energy similarity** (how close the song’s energy is to the user’s target, not simply “high” or “low” energy). Songs get a **numeric score** from these pieces; the **highest-scoring** songs surface as top recommendations.
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+### Song Features
 
-You can include a simple diagram or bullet list if helpful.
+- genre
+- mood
+- energy
+- tempo_bpm (optional; include if your scoring uses it)
+
+### User Profile Features
+
+- favorite_genre
+- favorite_mood
+- target_energy
+
+**In simple terms:** for every song, the recommender adds points when the genre and mood match the profile, and adds a **similarity** score for energy (closer to `target_energy` means more points). It then **ranks** all songs by that total score and returns the best matches—usually the top few—for the user to see.
 
 ---
 
