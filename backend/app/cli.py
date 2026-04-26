@@ -8,11 +8,11 @@ adversarial) to stress-test scoring logic and surface biases.
 from pathlib import Path
 
 try:
-    from src.recommender import load_songs, recommend_songs
+    from app.recommender import load_songs, recommend_songs
 except ModuleNotFoundError:
     from recommender import load_songs, recommend_songs
 
-_DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+_DATA_DIR = Path(__file__).resolve().parent / "data"
 _SONGS_CSV = _DATA_DIR / "songs.csv"
 
 # ── Standard profiles ────────────────────────────────────────────────
