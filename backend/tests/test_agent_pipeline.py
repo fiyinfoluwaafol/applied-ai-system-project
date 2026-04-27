@@ -40,6 +40,20 @@ def test_intent_parser_supports_synonyms():
     assert intent["target_energy"] <= 0.40
 
 
+def test_intent_parser_detects_acoustic_context():
+    songs = retrieve_songs()
+    intent = parse_intent(
+        "quiet acoustic folk coffee shop",
+        catalog_genres(songs),
+        catalog_moods(songs),
+    )
+
+    assert intent["favorite_genre"] == "folk"
+    assert intent["likes_acoustic"] is True
+    assert "acoustic" in intent["matched_terms"]
+    assert "coffee shop" in intent["matched_terms"]
+
+
 def test_retriever_loads_catalog():
     songs = retrieve_songs()
 
@@ -122,6 +136,45 @@ def test_guardrails_reject_empty_and_warn_on_vague_prompt():
     assert guardrails["safe"] is True
     assert guardrails["requires_human_review"] is True
     assert guardrails["warnings"]
+
+
+def test_conflicting_prompt_adds_guardrail_warning_without_review():
+    response = MusicCuratorAgent().run("calm high energy workout music")
+
+    parser_warnings = response["intent"]["warnings"]
+    guardrail_warnings = response["guardrails"]["warnings"]
+
+    assert any("Conflicting energy cues" in warning for warning in parser_warnings)
+    assert any("Conflicting energy cues" in warning for warning in guardrail_warnings)
+    assert response["guardrails"]["safe"] is True
+    assert response["guardrails"]["requires_human_review"] is False
+
+
+def test_agent_confidence_scores_stay_between_zero_and_one():
+    agent = MusicCuratorAgent()
+    prompts = [
+        "happy pop workout songs",
+        "lo-fi study beats to relax",
+        "quiet acoustic folk coffee shop",
+        "calm high energy workout music",
+        "playlist please",
+    ]
+
+    for prompt in prompts:
+        response = agent.run(prompt)
+        assert 0.0 <= response["confidence"]["score"] <= 1.0
+
+
+def test_agent_recommendations_include_expected_fields():
+    response = MusicCuratorAgent().run("happy pop workout songs")
+    recommendation = response["recommendations"][0]
+
+    assert {"rank", "song", "score", "reasons", "explanation"}.issubset(recommendation)
+    assert {"id", "title", "artist", "genre", "mood", "energy"}.issubset(
+        recommendation["song"]
+    )
+    assert isinstance(recommendation["reasons"], list)
+    assert recommendation["explanation"].strip()
 
 
 def test_music_curator_agent_returns_complete_response():

@@ -29,6 +29,14 @@ def test_known_good_case_passes():
     assert result.top_song == "Sunrise City"
 
 
+def test_default_evaluation_cases_have_valid_confidence_scores():
+    agent = MusicCuratorAgent()
+
+    for case in default_evaluation_cases():
+        result = run_case(agent, case)
+        assert 0.0 <= result.confidence_score <= 1.0
+
+
 def test_wrong_expected_top_song_fails():
     agent = MusicCuratorAgent()
     case = EvaluationCase(
@@ -52,4 +60,3 @@ def test_main_exits_successfully_for_default_cases(capsys):
     output = capsys.readouterr().out
     assert "Passed 8/8 evaluation cases" in output
     assert "[FAIL]" not in output
-
