@@ -47,12 +47,24 @@ class Recommender:
         self.songs = songs
 
     def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
-        # TODO: Implement recommendation logic
-        return self.songs[:k]
+        user_prefs = user_profile_to_dict(user)
+        ranked = sorted(
+            self.songs,
+            key=lambda song: score_song(user_prefs, song_to_dict(song))[0],
+            reverse=True,
+        )
+        if k <= 0:
+            return []
+        return ranked[:k]
 
     def explain_recommendation(self, user: UserProfile, song: Song) -> str:
-        # TODO: Implement explanation logic
-        return "Explanation placeholder"
+        _, reasons = score_song(user_profile_to_dict(user), song_to_dict(song))
+        if reasons:
+            return (
+                f"{song.title} by {song.artist} is recommended because "
+                f"{', '.join(reasons)}."
+            )
+        return f"{song.title} by {song.artist} is one of the closest available matches."
 
 def load_songs(csv_path: str) -> List[Dict]:
     """Load songs from a CSV file; returns a list of dicts with typed numeric fields."""
@@ -104,3 +116,26 @@ def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Dic
     if k <= 0:
         return []
     return ranked[:k]
+
+
+def song_to_dict(song: Song) -> Dict[str, Any]:
+    return {
+        "id": song.id,
+        "title": song.title,
+        "artist": song.artist,
+        "genre": song.genre,
+        "mood": song.mood,
+        "energy": song.energy,
+        "tempo_bpm": song.tempo_bpm,
+        "valence": song.valence,
+        "danceability": song.danceability,
+        "acousticness": song.acousticness,
+    }
+
+
+def user_profile_to_dict(user: UserProfile) -> Dict[str, Any]:
+    return {
+        "favorite_genre": user.favorite_genre,
+        "favorite_mood": user.favorite_mood,
+        "target_energy": user.target_energy,
+    }

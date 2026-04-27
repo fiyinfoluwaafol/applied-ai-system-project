@@ -16,13 +16,13 @@ Suggest a small list of songs (top 5 by default) from a fixed catalog that best 
 
 **Intended use:** Learning and demos. Anyone can run the CLI with different taste profiles to see how a transparent, rule-based recommender behaves.
 
-**Not intended for:** Real music streaming, commercial products, or anything that affects what real listeners hear. The catalog has only 19 songs and the rules are too simple for production.
+**Not intended for:** Real music streaming, commercial products, or anything that affects what real listeners hear. The catalog is still small and the rules are too simple for production.
 
 ---
 
 ## Data Used
 
-The catalog is `backend/app/data/songs.csv`: **19 songs**, **10 columns** (`id`, `title`, `artist`, `genre`, `mood`, `energy`, `tempo_bpm`, `valence`, `danceability`, `acousticness`). There are **16 genres** and **13 moods** in the file. Most genres have one song, so coverage is uneven. No rows were added or removed from the starter file.
+The catalog is `backend/app/data/songs.csv`: **200 songs**, **10 columns** (`id`, `title`, `artist`, `genre`, `mood`, `energy`, `tempo_bpm`, `valence`, `danceability`, `acousticness`). There are **22 genres** and **16 moods** in the file. Coverage is broader than the starter catalog, but the feature set and ranking rules are still intentionally simple.
 
 ---
 
@@ -60,7 +60,7 @@ The highest possible total is **4.0**. The top five songs are returned. Genre an
 
 **Experiment:** A **weight-shift** run changed constants from baseline (`genre=2.0`, `mood=1.0`, `energy=1.0`) to `genre=1.0`, `mood=1.0`, `energy=2.0` to see if genre was too strong. After the shift, high-energy non-classical songs could rank above the low-energy classical track for the edge profile, and the lofi profile sometimes mixed in ambient or folk when energy aligned.
 
-**Automated tests:** `pytest` runs starter tests in `backend/tests/test_recommender.py` on the `Recommender` class. The CLI path uses `recommend_songs()` / `score_song()` in the same module for the real rankings printed by `backend/app/cli.py`.
+**Automated tests:** `pytest` runs recommender and backend pipeline tests in `backend/tests/`. The CLI path uses `recommend_songs()` / `score_song()` in the same module for the real rankings printed by `backend/app/cli.py`.
 
 ---
 

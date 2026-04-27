@@ -1,6 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+
+from app.agent import MusicCuratorAgent
 
 
 app = FastAPI(title="VibeMatch AI")
@@ -16,6 +18,10 @@ app.add_middleware(
 
 class RecommendRequest(BaseModel):
     prompt: str
+    k: int = 5
+
+
+agent = MusicCuratorAgent()
 
 
 @app.get("/health")
@@ -25,5 +31,7 @@ def health():
 
 @app.post("/recommend")
 def recommend(request: RecommendRequest):
-    return {"message": "endpoint not implemented yet"}
-
+    try:
+        return agent.run(request.prompt, k=request.k)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error

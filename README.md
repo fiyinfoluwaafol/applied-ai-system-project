@@ -31,6 +31,7 @@ applied-ai-system-final/
 │   │   └── tools/
 │   │       └── __init__.py
 │   ├── tests/
+│   │   ├── test_agent_pipeline.py
 │   │   └── test_recommender.py
 │   └── requirements.txt
 ├── assets/
@@ -74,22 +75,19 @@ flowchart TD
     O --> G
 ```
 
-Rendered image:
-
-![System Architecture Diagram](assets/system-architecture.png)
-
 ## What Works Today
 
 - The existing content-based recommender logic lives in `backend/app/recommender.py`.
 - The preserved CLI simulation lives in `backend/app/cli.py`.
+- `backend/app/agent.py` runs a deterministic local `MusicCuratorAgent`.
+- Backend tools parse intent, retrieve songs, score recommendations, explain
+  results, evaluate confidence, and apply guardrails.
 - The FastAPI backend exposes:
   - `GET /health` -> `{ "status": "ok" }`
-  - `POST /recommend` -> `{ "message": "endpoint not implemented yet" }`
+  - `POST /recommend` -> playlist recommendations with intent, confidence,
+    guardrails, and an agent trace.
 - The Next.js frontend sends a prompt to `http://localhost:8000/recommend`
   and displays the raw JSON response.
-
-The `/recommend` endpoint is intentionally a placeholder. No AI agent workflow
-has been implemented yet.
 
 ## Backend Setup
 
@@ -117,7 +115,7 @@ npm run dev
 ```
 
 Open `http://localhost:3000`, enter a prompt, and click **Generate playlist**.
-The placeholder backend JSON should appear in the results area.
+The backend JSON should appear in the results area.
 
 ## Preserved Python Simulation
 
@@ -138,7 +136,7 @@ pytest
 ## Original Recommender Summary
 
 This project implements a content-based recommender that scores each song in a
-19-song catalog against a user taste profile using genre match, mood match, and
+200-song catalog against a user taste profile using genre match, mood match, and
 energy similarity. Songs are ranked by score, and the top matches are returned.
 
 Example CLI output:
