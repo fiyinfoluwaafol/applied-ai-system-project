@@ -2,6 +2,10 @@
 
 VibeMatch AI is a full-stack, local music recommendation app that turns a natural-language listening prompt into ranked song suggestions with explanations, confidence, guardrails, and an agent trace. It matters because recommenders can feel like black boxes; this project makes each step visible so a reviewer can see how user intent becomes a playlist.
 
+## Demo Video
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/2553e45484f84b21985fcf37587bb33b" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
 ## Original Project
 
 The original Modules 1-3 project was **Music Recommender Simulation**, a Python CLI recommender built to explore how simple AI-style recommendation systems work. It represented songs and user taste profiles as structured data, scored a song catalog by genre, mood, and energy similarity, and printed ranked recommendations with reason strings. The project also included stress tests, edge-case profiles, a model card, and reflection notes about bias, fragile scoring rules, and the limits of tiny catalogs.
@@ -242,6 +246,11 @@ Selected output:
 - **Agent pipeline instead of one large function:** I split parsing, retrieval, scoring, explanation, confidence, and guardrails into separate tools so each step can be tested and improved independently.
 - **Raw JSON frontend output:** The frontend currently displays the backend response directly. That keeps the focus on backend correctness and makes it easy for reviewers to inspect the agent’s reasoning.
 - **No database/auth/Docker:** The goal is a clean local portfolio project, not production infrastructure.
+
+## Stretch Features (For Grading)
+
+- **Agentic Workflow Enhancement (implemented):** The backend uses a multi-step `MusicCuratorAgent` chain with observable intermediate steps: `intent_parser -> retriever -> scorer -> explainer -> confidence -> guardrails`. Each response includes a `trace` field so graders can verify decision-making and step status directly.
+- **Test Harness / Evaluation Script (implemented):** `python3 -m app.evaluate` runs predefined prompts and prints a pass/fail summary with confidence labels/scores, guardrail review flags, and top-song checks. Current run result: **8/8 evaluation cases passed**.
 
 ## Testing Summary
 
