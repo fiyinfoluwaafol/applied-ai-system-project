@@ -1,71 +1,43 @@
 # VibeMatch AI
 
-VibeMatch AI is a local full-stack version of the original Python music
-recommender simulation. The project is now split into a Next.js frontend and a
-FastAPI backend while preserving the existing recommendation logic.
+VibeMatch AI is a full-stack, local music recommendation app that turns a natural-language listening prompt into ranked song suggestions with explanations, confidence, guardrails, and an agent trace. It matters because recommenders can feel like black boxes; this project makes each step visible so a reviewer can see how user intent becomes a playlist.
 
-## Project Structure
+## Original Project
 
-```text
-applied-ai-system-final/
-├── frontend/
-│   ├── app/
-│   │   ├── page.tsx
-│   │   ├── layout.tsx
-│   │   └── globals.css
-│   ├── components/
-│   │   ├── PromptBox.tsx
-│   │   └── Results.tsx
-│   ├── package.json
-│   ├── tsconfig.json
-│   └── next.config.ts
-├── backend/
-│   ├── app/
-│   │   ├── __init__.py
-│   │   ├── main.py
-│   │   ├── agent.py
-│   │   ├── recommender.py
-│   │   ├── cli.py
-│   │   ├── data/
-│   │   │   └── songs.csv
-│   │   └── tools/
-│   │       └── __init__.py
-│   ├── tests/
-│   │   ├── test_agent_pipeline.py
-│   │   └── test_recommender.py
-│   └── requirements.txt
-├── assets/
-│   ├── cli-output.png
-│   ├── stress-test_edge-profile.png
-│   └── stress-test_standard-profile.png
-├── docs/
-│   ├── model_card.md
-│   └── reflection.md
-├── README.md
-└── .gitignore
-```
+The original Modules 1-3 project was **Music Recommender Simulation**, a Python CLI recommender built to explore how simple AI-style recommendation systems work. It represented songs and user taste profiles as structured data, scored a song catalog by genre, mood, and energy similarity, and printed ranked recommendations with reason strings. The project also included stress tests, edge-case profiles, a model card, and reflection notes about bias, fragile scoring rules, and the limits of tiny catalogs.
 
-## System Architecture Diagram
+VibeMatch AI expands that CLI simulation into a portfolio-ready full-stack app while preserving the original scoring logic as the core recommendation engine.
 
-The diagram below describes the intended end-to-end AI recommendation workflow
-and quality checks (including guardrails and human review path):
+## What It Does
+
+- Accepts prompts like `happy pop workout songs` or `lo-fi study beats to relax`.
+- Parses user intent into genre, mood, target energy, acoustic/context cues, and parser warnings.
+- Retrieves songs from a local CSV catalog.
+- Scores and ranks recommendations using transparent content-based rules.
+- Generates plain-English explanations for each recommendation.
+- Evaluates confidence and applies guardrails for vague or conflicting prompts.
+- Returns raw JSON through a FastAPI endpoint and displays it in a Next.js frontend.
+
+## Architecture Overview
+
+The system is split into a **Next.js frontend** and a **FastAPI backend**. The frontend collects the user prompt and sends it to `POST /recommend`. The backend runs a deterministic `MusicCuratorAgent` pipeline: intent parser, song retriever, scorer, explainer, confidence evaluator, and guardrail checker. The response includes recommendations plus trace data so the whole workflow is inspectable.
 
 ```mermaid
 flowchart TD
-    A[User Natural Language Prompt] --> B[React Frontend]
+    A[User Natural Language Prompt] --> B[Next.js Frontend]
     B --> C[FastAPI /recommend Endpoint]
-    C --> D[Music Curator Agent]
+    C --> D[MusicCuratorAgent]
 
-    D --> E[Intent Parser Tool]
-    E --> F[Song Retriever Tool]
-    F --> G[Recommendation Scorer Tool]
-    G --> H[Explanation Generator Tool]
-    H --> I[Confidence Evaluator Tool]
-    I --> J[Guardrail Checker Tool]
+    D --> E[Intent Parser]
+    E --> F[Song Retriever]
+    F --> G[Recommendation Scorer]
+    G --> H[Explanation Generator]
+    H --> I[Confidence Evaluator]
+    I --> J[Guardrail Checker]
 
-    J --> K{Safe to Recommend?}
-    K -->|Yes| L[Playlist + Explanations]
-    K -->|No| M[Playlist + Human Review Warning]
+    J --> K{Review Needed?}
+    K -->|No| L[Recommendations + Explanations]
+    K -->|Yes| M[Recommendations + Guardrail Warnings]
 
     L --> N[Agent Trace]
     M --> N
@@ -75,21 +47,29 @@ flowchart TD
     O --> G
 ```
 
-## What Works Today
+## Project Structure
 
-- The existing content-based recommender logic lives in `backend/app/recommender.py`.
-- The preserved CLI simulation lives in `backend/app/cli.py`.
-- `backend/app/agent.py` runs a deterministic local `MusicCuratorAgent`.
-- Backend tools parse intent, retrieve songs, score recommendations, explain
-  results, evaluate confidence, and apply guardrails.
-- The FastAPI backend exposes:
-  - `GET /health` -> `{ "status": "ok" }`
-  - `POST /recommend` -> playlist recommendations with intent, confidence,
-    guardrails, and an agent trace.
-- The Next.js frontend sends a prompt to `http://localhost:8000/recommend`
-  and displays the raw JSON response.
+```text
+applied-ai-system-final/
+├── frontend/                 # Next.js App Router UI
+├── backend/
+│   ├── app/
+│   │   ├── main.py           # FastAPI routes
+│   │   ├── agent.py          # MusicCuratorAgent orchestration
+│   │   ├── recommender.py    # Original scoring logic
+│   │   ├── evaluate.py       # Agent evaluation harness
+│   │   ├── data/songs.csv    # Local catalog
+│   │   └── tools/            # Parser, retriever, scorer, explainer, confidence, guardrails
+│   ├── tests/
+│   └── requirements.txt
+├── assets/                   # Screenshots and architecture assets
+├── docs/                     # Model card and reflection
+└── README.md
+```
 
-## Backend Setup
+## Setup Instructions
+
+### 1. Run The Backend
 
 ```bash
 cd backend
@@ -97,16 +77,23 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-In another terminal, you can verify the backend:
+The backend runs at `http://localhost:8000`.
+
+Quick health check:
 
 ```bash
 curl http://localhost:8000/health
-curl -X POST http://localhost:8000/recommend \
-  -H "Content-Type: application/json" \
-  -d '{"prompt":"happy pop workout songs"}'
 ```
 
-## Frontend Setup
+Expected response:
+
+```json
+{ "status": "ok" }
+```
+
+### 2. Run The Frontend
+
+Open a second terminal:
 
 ```bash
 cd frontend
@@ -114,42 +101,191 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`, enter a prompt, and click **Generate playlist**.
-The backend JSON should appear in the results area.
+Open `http://localhost:3000`, enter a prompt, and click **Generate playlist**. The app displays the backend JSON response directly.
 
-## Preserved Python Simulation
-
-Run the original recommender simulation from the backend package:
+### 3. Run Tests And Evaluation
 
 ```bash
 cd backend
-python -m app.cli
+python3 -m pytest
+python3 -m app.evaluate
+python3 -m app.cli
 ```
 
-Run backend tests with:
+`app.evaluate` runs predefined agent prompts and checks recommendations, confidence, guardrails, and trace completeness.
+
+## Sample Interactions
+
+### Example 1: Strong Match
+
+Input:
+
+```text
+happy pop workout songs
+```
+
+Selected output:
+
+```json
+{
+  "intent": {
+    "favorite_genre": "pop",
+    "favorite_mood": "happy",
+    "target_energy": 0.85,
+    "matched_terms": ["pop", "happy", "workout"]
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "song": {
+        "title": "Sunrise City",
+        "artist": "Neon Echo"
+      },
+      "score": 3.97,
+      "explanation": "Recommended because Sunrise City by Neon Echo lines up with the pop genre cue, the happy mood cue, your target energy."
+    }
+  ],
+  "confidence": {
+    "label": "high",
+    "score": 0.8
+  },
+  "guardrails": {
+    "safe": true,
+    "requires_human_review": false,
+    "warnings": []
+  }
+}
+```
+
+### Example 2: Synonym And Context Parsing
+
+Input:
+
+```text
+lo-fi study beats to relax
+```
+
+Selected output:
+
+```json
+{
+  "intent": {
+    "favorite_genre": "lofi",
+    "favorite_mood": "chill",
+    "target_energy": 0.35,
+    "matched_terms": ["study beats", "relax", "study"]
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "song": {
+        "title": "Library Rain",
+        "artist": "Paper Lanterns"
+      },
+      "score": 3.97
+    }
+  ],
+  "confidence": {
+    "label": "high",
+    "score": 0.81
+  }
+}
+```
+
+### Example 3: Vague Prompt With Guardrails
+
+Input:
+
+```text
+playlist please
+```
+
+Selected output:
+
+```json
+{
+  "intent": {
+    "favorite_genre": "",
+    "favorite_mood": "",
+    "target_energy": 0.6,
+    "matched_terms": [],
+    "warnings": [
+      "No supported genre was detected; scoring across the full catalog.",
+      "No supported mood was detected; using energy and any genre cues available.",
+      "No catalog-backed prompt terms were detected; returning broad recommendations."
+    ]
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "song": {
+        "title": "Adore You",
+        "artist": "Harry Styles"
+      }
+    }
+  ],
+  "confidence": {
+    "label": "low",
+    "score": 0.14
+  },
+  "guardrails": {
+    "safe": true,
+    "requires_human_review": true
+  }
+}
+```
+
+## Design Decisions
+
+- **Deterministic local agent:** I avoided external LLM calls so the project is easy to run, test, and review without API keys or hidden costs.
+- **Transparent scoring:** The original scoring model is intentionally simple: genre match, mood match, and energy similarity. This makes the output explainable, but it also means the system cannot understand subtle emotional similarity unless I explicitly encode it.
+- **Agent pipeline instead of one large function:** I split parsing, retrieval, scoring, explanation, confidence, and guardrails into separate tools so each step can be tested and improved independently.
+- **Raw JSON frontend output:** The frontend currently displays the backend response directly. That keeps the focus on backend correctness and makes it easy for reviewers to inspect the agent’s reasoning.
+- **No database/auth/Docker:** The goal is a clean local portfolio project, not production infrastructure.
+
+## Testing Summary
+
+The backend test suite covers the original recommender, the agent workflow, guardrails, confidence scoring, the FastAPI endpoint, and the evaluation harness.
+
+Verified commands:
 
 ```bash
 cd backend
-pytest
+python3 -m pytest
+python3 -m app.evaluate
+python3 -m app.cli
 ```
 
-## Original Recommender Summary
+What worked:
 
-This project implements a content-based recommender that scores each song in a
-200-song catalog against a user taste profile using genre match, mood match, and
-energy similarity. Songs are ranked by score, and the top matches are returned.
+- Strong prompts like `happy pop workout songs` produce high-confidence recommendations.
+- Synonyms like `lo-fi` and `study beats` map into catalog-backed intent.
+- Vague prompts still return recommendations but trigger low confidence and review warnings.
+- Conflicting prompts produce guardrail warnings without breaking the app.
+- The agent trace consistently includes parser, retriever, scorer, explainer, confidence, and guardrail steps.
 
-Example CLI output:
+What did not work perfectly:
 
-![CLI Recommender Output](assets/cli-output.png)
+- Exact string matching is still limited. Related moods like `happy`, `uplifting`, and `euphoric` are treated separately unless explicitly mapped.
+- The system can recommend a technically high-scoring song even when a human might prefer more diversity or nuance.
+- Confidence is heuristic, not learned from real user feedback.
 
-Standard profile stress test:
+What I learned:
 
-![Standard Profile Stress Test Output](assets/stress-test_standard-profile.png)
+- Small scoring choices can dominate recommendation behavior.
+- Guardrails are useful even in a simple local app because they make uncertainty visible.
+- Evaluation prompts are a practical way to catch regressions in agent behavior before adding more complexity.
 
-Edge profile stress test:
+## Reflection
 
-![Edge Profile Stress Test Output](assets/stress-test_edge-profile.png)
+This project taught me that AI systems are not just about producing an answer; they are about designing the path to that answer. The original recommender showed how a few features and weights can create results that feel intelligent, but also how quickly edge cases expose hidden assumptions.
 
-See the [model card](docs/model_card.md) and
-[technical reflection](docs/reflection.md) for the original evaluation notes.
+Building VibeMatch AI pushed me to think more like a product engineer: preserve working logic, separate concerns, add tests around behavior, and make uncertainty visible to users. The most valuable lesson was that explainability is not an afterthought. If the system can show its intent, confidence, guardrails, and trace, it becomes easier to debug, improve, and trust.
+
+## Supporting Docs
+
+- [Model Card](docs/model_card.md)
+- [Technical Reflection](docs/reflection.md)
+- [CLI Output Screenshot](assets/cli-output.png)
+- [Standard Profile Stress Test](assets/stress-test_standard-profile.png)
+- [Edge Profile Stress Test](assets/stress-test_edge-profile.png)
