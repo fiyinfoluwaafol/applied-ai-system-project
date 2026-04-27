@@ -4,9 +4,9 @@ VibeMatch AI is a full-stack, local music recommendation app that turns a natura
 
 ## Demo Video
 
-[Watch the demo on Loom](https://www.loom.com/share/2553e45484f84b21985fcf37587bb33b)
+[Watch the demo video on Loom](https://www.loom.com/share/2553e45484f84b21985fcf37587bb33b)
 
-[![VibeMatch AI Demo Video](https://cdn.loom.com/sessions/thumbnails/2553e45484f84b21985fcf37587bb33b-with-play.gif)](https://www.loom.com/share/2553e45484f84b21985fcf37587bb33b)
+[![Vibe Match AI Agent Playlist Demo](https://cdn.loom.com/sessions/thumbnails/2553e45484f84b21985fcf37587bb33b-3900c44b2c336a71-full-play.gif#t=0.1)](https://www.loom.com/share/2553e45484f84b21985fcf37587bb33b)
 
 ## Original Project
 
