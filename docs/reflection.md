@@ -1,8 +1,30 @@
 # Reflection — Music Recommender Evaluation
 
-**Personal reflection (prompts: biggest learning moment, AI tools, surprises, next steps):** see [`model_card.md`](model_card.md#personal-reflection) — *Personal Reflection* section.
+This file includes both the assignment reflection prompts and technical evaluation notes.
 
-This file is **technical evaluation notes** (profile-by-profile comparisons).
+## Reflection And Ethics Prompts
+
+### What are the limitations or biases in this system?
+
+The model is deterministic and heavily dependent on exact string matches for genre and mood. That means related moods (for example, `uplifting` vs. `happy`) can be treated as unrelated unless explicitly mapped. Even with a larger catalog, sparse combinations and fixed weights can bias recommendations toward whichever labels are over-represented.
+
+### Could this AI be misused, and how would you prevent that?
+
+Yes. A user could over-trust recommendations in sensitive situations (for example emotional support contexts) where this project is not designed to provide expert guidance. Mitigations in this repo include confidence scoring, guardrail warnings, and `requires_human_review` for low-confidence or weak-signal prompts. The UI and docs should continue framing outputs as suggestions, not authoritative advice.
+
+### What surprised you while testing reliability?
+
+Small constant changes in scoring weights produced large ranking shifts on edge prompts. This was most visible in contradictory prompts (like classical + very high energy), where the system can switch between genre-anchored and energy-anchored behavior with a single weight adjustment.
+
+### Describe your collaboration with AI (one helpful + one flawed suggestion).
+
+Helpful: AI suggested structuring the backend as a stepwise pipeline (parse -> retrieve -> score -> explain -> confidence -> guardrails), which made debugging and test coverage much easier.
+
+Flawed: one AI draft recommendation over-prioritized genre matches and underweighted contradictory cues. Edge-case tests exposed this, and the fix was to rebalance behavior with confidence + guardrail checks and stronger evaluation coverage.
+
+---
+
+Below are the technical evaluation notes (profile-by-profile comparisons).
 
 ---
 

@@ -276,11 +276,31 @@ What I learned:
 - Guardrails are useful even in a simple local app because they make uncertainty visible.
 - Evaluation prompts are a practical way to catch regressions in agent behavior before adding more complexity.
 
+## 4. Reliability And Evaluation
+
+- Automated tests: `python3 -m pytest -q` -> **21/21 tests passed**.
+- Evaluation harness: `python3 -m app.evaluate` -> **8/8 evaluation cases passed**.
+- Confidence scoring: confidence is returned for every response (`low`/`medium`/`high`) with a numeric score in `[0.0, 1.0]`. In the current 8-case harness run, average confidence was **0.54**.
+- Logging and error handling: `POST /recommend` logs invalid and unexpected failures, returns `400` for invalid user input, and returns `500` for unexpected server-side errors.
+- Human evaluation: profile-by-profile review and edge-case analysis are documented in [`docs/reflection.md`](docs/reflection.md).
+
+Short reliability summary:
+
+> 21/21 automated tests passed and 8/8 evaluation cases passed. Confidence scores averaged 0.54 across mixed easy and vague prompts. Reliability improved after adding guardrails, confidence thresholds, and explicit input/error handling.
+
 ## Reflection
 
 This project taught me that AI systems are not just about producing an answer; they are about designing the path to that answer. The original recommender showed how a few features and weights can create results that feel intelligent, but also how quickly edge cases expose hidden assumptions.
 
 Building VibeMatch AI pushed me to think more like a product engineer: preserve working logic, separate concerns, add tests around behavior, and make uncertainty visible to users. The most valuable lesson was that explainability is not an afterthought. If the system can show its intent, confidence, guardrails, and trace, it becomes easier to debug, improve, and trust.
+
+## 5. Reflection And Ethics
+
+- Limitations and bias: the recommender still relies on exact string matching for genre/mood, so under-represented moods and sparse genre intersections can produce simplistic outputs.
+- Misuse risk: users could over-trust recommendations for sensitive contexts (mental health, safety, or identity-sensitive curation). Mitigation includes confidence labels, guardrail warnings, and `requires_human_review` on low-confidence prompts.
+- Reliability surprise: tiny tuning changes to scoring weights can reorder top results significantly, especially on edge prompts.
+- AI collaboration (helpful): using a staged pipeline (parser -> retriever -> scorer -> explainer -> confidence -> guardrails) made testing and debugging much clearer.
+- AI collaboration (flawed): one generated draft overemphasized genre and produced brittle rankings on contradictory prompts; this was corrected through edge-case testing and guardrail checks.
 
 ## Supporting Docs
 
