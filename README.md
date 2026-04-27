@@ -44,6 +44,40 @@ applied-ai-system-final/
 └── .gitignore
 ```
 
+## System Architecture Diagram
+
+The diagram below describes the intended end-to-end AI recommendation workflow
+and quality checks (including guardrails and human review path):
+
+```mermaid
+flowchart TD
+    A[User Natural Language Prompt] --> B[React Frontend]
+    B --> C[FastAPI /recommend Endpoint]
+    C --> D[Music Curator Agent]
+
+    D --> E[Intent Parser Tool]
+    E --> F[Song Retriever Tool]
+    F --> G[Recommendation Scorer Tool]
+    G --> H[Explanation Generator Tool]
+    H --> I[Confidence Evaluator Tool]
+    I --> J[Guardrail Checker Tool]
+
+    J --> K{Safe to Recommend?}
+    K -->|Yes| L[Playlist + Explanations]
+    K -->|No| M[Playlist + Human Review Warning]
+
+    L --> N[Agent Trace]
+    M --> N
+    N --> B
+
+    O[Song Catalog CSV] --> F
+    O --> G
+```
+
+Rendered image:
+
+![System Architecture Diagram](assets/system-architecture.png)
+
 ## What Works Today
 
 - The existing content-based recommender logic lives in `backend/app/recommender.py`.
