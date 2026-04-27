@@ -18,3 +18,184 @@ id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
 17,Slow Heat Blues,Marlow & Co,blues,soulful,0.48,82,0.41,0.55,0.68
 18,Island Time,Kai & The Tide,reggae,relaxed,0.46,88,0.72,0.68,0.55
 19,Violet Hours,Northern Glow,r&b,romantic,0.41,74,0.63,0.58,0.42
+20,Crimson Echo,June Theory,pop,happy,0.18,74,0.76,0.69,0.10
+21,Silver Canvas,Signal Choir,lofi,relaxed,0.49,119,0.71,0.59,0.75
+22,Golden Waves,Echo Harbor,rock,nostalgic,0.84,168,0.45,0.47,0.26
+23,Velvet Mirage,Fable District,ambient,peaceful,0.39,105,0.66,0.32,0.68
+24,Neon Rhythm,June Theory,jazz,romantic,0.64,141,0.65,0.64,0.66
+25,Midnight Orbit,Signal Choir,synthwave,energetic,0.80,157,0.70,0.81,0.13
+26,Solar Parade,Echo Harbor,indie pop,intense,0.38,106,0.50,0.43,0.34
+27,Lunar Engine,Fable District,country,nostalgic,0.54,122,0.49,0.55,0.48
+28,Electric Circuit,June Theory,metal,peaceful,0.76,155,0.53,0.40,0.06
+29,Amber Skyline,Signal Choir,folk,romantic,0.37,99,0.69,0.53,0.82
+30,Ivory Echo,Echo Harbor,house,energetic,0.44,112,0.74,0.89,0.08
+31,Obsidian Canvas,Fable District,classical,intense,0.72,153,0.37,0.51,0.95
+32,Wild Waves,June Theory,hip-hop,moody,0.36,101,0.50,0.47,0.08
+33,Quiet Mirage,Signal Choir,blues,euphoric,0.59,135,0.89,0.98,0.66
+34,Rapid Rhythm,Echo Harbor,reggae,romantic,0.90,170,0.56,0.61,0.36
+35,Coastal Orbit,Fable District,r&b,energetic,0.35,102,0.78,0.78,0.28
+36,Desert Parade,June Theory,edm,intense,0.49,116,0.41,0.59,0.17
+37,Urban Engine,Signal Choir,latin,moody,0.86,168,0.37,0.55,0.30
+38,Arctic Circuit,Echo Harbor,afrobeats,euphoric,0.34,95,0.93,0.87,0.27
+39,Tidal Skyline,Fable District,punk,soulful,0.64,138,0.50,0.47,0.04
+40,Crimson Echo,June Theory,soul,dreamy,0.82,166,0.65,0.51,0.44
+41,Silver Canvas,Signal Choir,dnb,intense,0.33,97,0.45,0.48,0.00
+42,Golden Waves,Echo Harbor,pop,moody,0.54,128,0.41,0.44,0.19
+43,Velvet Mirage,Fable District,lofi,euphoric,0.78,154,0.97,0.95,0.84
+44,Neon Rhythm,June Theory,rock,soulful,0.32,99,0.54,0.55,0.14
+45,Midnight Orbit,Signal Choir,ambient,dreamy,0.44,109,0.52,0.40,0.77
+46,Solar Parade,Echo Harbor,jazz,chill,0.74,152,0.68,0.64,0.54
+47,Lunar Engine,Fable District,synthwave,focused,0.31,91,0.55,0.57,0.22
+48,Electric Circuit,June Theory,indie pop,euphoric,0.59,132,0.84,0.84,0.22
+49,Amber Skyline,Signal Choir,country,soulful,0.92,179,0.58,0.63,0.57
+50,Ivory Echo,Echo Harbor,metal,dreamy,0.30,93,0.56,0.48,0.15
+51,Obsidian Canvas,Fable District,folk,chill,0.49,122,0.55,0.53,0.70
+52,Wild Waves,June Theory,house,focused,0.88,167,0.59,0.65,0.17
+53,Quiet Mirage,Signal Choir,classical,melancholic,0.29,95,0.33,0.45,0.83
+54,Rapid Rhythm,Echo Harbor,hip-hop,confident,0.64,135,0.61,0.68,0.17
+55,Coastal Orbit,Fable District,blues,dreamy,0.84,165,0.60,0.56,0.54
+56,Desert Parade,June Theory,reggae,chill,0.28,87,0.59,0.61,0.45
+57,Urban Engine,Signal Choir,r&b,focused,0.54,125,0.63,0.54,0.37
+58,Arctic Circuit,Echo Harbor,edm,melancholic,0.80,163,0.37,0.34,0.05
+59,Tidal Skyline,Fable District,latin,confident,0.27,89,0.65,0.76,0.39
+60,Crimson Echo,June Theory,afrobeats,uplifting,0.44,115,0.86,0.74,0.15
+61,Silver Canvas,Signal Choir,punk,happy,0.76,152,0.85,0.70,0.13
+62,Golden Waves,Echo Harbor,soul,focused,0.26,91,0.50,0.62,0.32
+63,Velvet Mirage,Fable District,dnb,melancholic,0.59,129,0.41,0.42,0.07
+64,Neon Rhythm,June Theory,pop,confident,0.72,150,0.69,0.65,0.28
+65,Midnight Orbit,Signal Choir,lofi,uplifting,0.25,84,0.73,0.82,0.72
+66,Solar Parade,Echo Harbor,rock,happy,0.49,119,0.89,0.78,0.23
+67,Lunar Engine,Fable District,ambient,relaxed,0.90,176,0.67,0.49,0.65
+68,Electric Circuit,June Theory,jazz,nostalgic,0.24,85,0.41,0.56,0.63
+69,Amber Skyline,Signal Choir,synthwave,confident,0.64,141,0.73,0.73,0.10
+70,Ivory Echo,Echo Harbor,indie pop,uplifting,0.86,165,0.77,0.71,0.31
+71,Obsidian Canvas,Fable District,country,happy,0.23,87,0.76,0.86,0.66
+72,Wild Waves,June Theory,metal,relaxed,0.54,122,0.71,0.57,0.03
+73,Quiet Mirage,Signal Choir,folk,nostalgic,0.82,163,0.45,0.45,0.79
+74,Rapid Rhythm,Echo Harbor,house,peaceful,0.22,80,0.66,0.49,0.05
+75,Coastal Orbit,Fable District,classical,romantic,0.44,112,0.65,0.62,0.92
+76,Desert Parade,June Theory,hip-hop,happy,0.78,160,0.80,0.75,0.05
+77,Urban Engine,Signal Choir,blues,relaxed,0.21,81,0.75,0.46,0.63
+78,Arctic Circuit,Echo Harbor,reggae,nostalgic,0.59,135,0.49,0.53,0.54
+79,Tidal Skyline,Fable District,r&b,peaceful,0.74,149,0.53,0.38,0.25
+80,Crimson Echo,June Theory,edm,romantic,0.20,83,0.69,0.51,0.14
+81,Silver Canvas,Signal Choir,latin,energetic,0.49,116,0.74,0.87,0.27
+82,Golden Waves,Echo Harbor,afrobeats,intense,0.92,176,0.37,0.49,0.24
+83,Velvet Mirage,Fable District,punk,nostalgic,0.19,76,0.53,0.42,0.01
+84,Neon Rhythm,June Theory,soul,peaceful,0.64,138,0.57,0.46,0.41
+85,Midnight Orbit,Signal Choir,dnb,romantic,0.88,173,0.56,0.59,0.16
+86,Solar Parade,Echo Harbor,pop,energetic,0.18,77,0.78,0.76,0.16
+87,Lunar Engine,Fable District,lofi,intense,0.54,128,0.41,0.57,0.81
+88,Electric Circuit,June Theory,rock,moody,0.84,162,0.37,0.53,0.11
+89,Amber Skyline,Signal Choir,ambient,euphoric,0.39,108,0.93,0.85,0.74
+90,Ivory Echo,Echo Harbor,jazz,romantic,0.44,109,0.60,0.67,0.51
+91,Obsidian Canvas,Fable District,synthwave,energetic,0.80,160,0.82,0.84,0.19
+92,Wild Waves,June Theory,indie pop,intense,0.38,100,0.45,0.46,0.40
+93,Quiet Mirage,Signal Choir,country,moody,0.59,132,0.41,0.61,0.54
+94,Rapid Rhythm,Echo Harbor,metal,euphoric,0.76,158,0.97,0.93,0.12
+95,Coastal Orbit,Fable District,folk,soulful,0.37,102,0.54,0.53,0.67
+96,Desert Parade,June Theory,house,dreamy,0.49,122,0.52,0.38,0.14
+97,Urban Engine,Signal Choir,classical,intense,0.72,147,0.49,0.54,0.80
+98,Arctic Circuit,Echo Harbor,hip-hop,moody,0.36,104,0.45,0.50,0.14
+99,Tidal Skyline,Fable District,blues,euphoric,0.64,135,0.84,0.82,0.72
+100,Crimson Echo,June Theory,reggae,soulful,0.90,173,0.58,0.61,0.42
+101,Silver Canvas,Signal Choir,r&b,dreamy,0.35,96,0.56,0.46,0.34
+102,Golden Waves,Echo Harbor,edm,chill,0.54,125,0.55,0.51,0.02
+103,Velvet Mirage,Fable District,latin,focused,0.86,171,0.59,0.63,0.36
+104,Neon Rhythm,June Theory,afrobeats,euphoric,0.34,98,0.88,0.90,0.12
+105,Midnight Orbit,Signal Choir,punk,soulful,0.44,115,0.45,0.50,0.10
+106,Solar Parade,Echo Harbor,soul,dreamy,0.82,160,0.60,0.54,0.50
+107,Lunar Engine,Fable District,dnb,chill,0.33,100,0.59,0.59,0.04
+108,Electric Circuit,June Theory,pop,focused,0.59,129,0.63,0.52,0.25
+109,Amber Skyline,Signal Choir,lofi,melancholic,0.78,157,0.37,0.51,0.69
+110,Ivory Echo,Echo Harbor,rock,confident,0.32,93,0.65,0.74,0.20
+111,Obsidian Canvas,Fable District,ambient,dreamy,0.49,119,0.64,0.43,0.62
+112,Wild Waves,June Theory,jazz,chill,0.74,155,0.63,0.67,0.60
+113,Quiet Mirage,Signal Choir,synthwave,focused,0.31,94,0.50,0.60,0.28
+114,Rapid Rhythm,Echo Harbor,indie pop,melancholic,0.64,141,0.41,0.40,0.28
+115,Coastal Orbit,Fable District,country,confident,0.92,173,0.69,0.63,0.63
+116,Desert Parade,June Theory,metal,uplifting,0.30,96,0.73,0.80,0.00
+117,Urban Engine,Signal Choir,folk,happy,0.54,122,0.89,0.76,0.76
+118,Arctic Circuit,Echo Harbor,house,focused,0.88,170,0.54,0.49,0.02
+119,Tidal Skyline,Fable District,classical,melancholic,0.29,89,0.28,0.48,0.89
+120,Crimson Echo,June Theory,hip-hop,confident,0.44,112,0.73,0.71,0.23
+121,Silver Canvas,Signal Choir,blues,uplifting,0.84,168,0.77,0.69,0.60
+122,Golden Waves,Echo Harbor,reggae,happy,0.28,90,0.76,0.84,0.51
+123,Velvet Mirage,Fable District,r&b,relaxed,0.59,135,0.71,0.55,0.22
+124,Neon Rhythm,June Theory,edm,nostalgic,0.80,157,0.45,0.43,0.11
+125,Midnight Orbit,Signal Choir,latin,confident,0.27,92,0.77,0.79,0.24
+126,Solar Parade,Echo Harbor,afrobeats,uplifting,0.49,116,0.81,0.77,0.21
+127,Lunar Engine,Fable District,punk,happy,0.76,155,0.80,0.73,0.19
+128,Electric Circuit,June Theory,soul,relaxed,0.26,85,0.75,0.63,0.38
+129,Amber Skyline,Signal Choir,dnb,nostalgic,0.64,138,0.49,0.51,0.13
+130,Ivory Echo,Echo Harbor,pop,peaceful,0.72,153,0.53,0.36,0.13
+131,Obsidian Canvas,Fable District,lofi,romantic,0.25,86,0.69,0.68,0.78
+132,Wild Waves,June Theory,rock,happy,0.54,128,0.84,0.81,0.08
+133,Quiet Mirage,Signal Choir,ambient,relaxed,0.90,170,0.62,0.52,0.71
+134,Rapid Rhythm,Echo Harbor,jazz,nostalgic,0.24,88,0.53,0.40,0.69
+135,Coastal Orbit,Fable District,synthwave,peaceful,0.44,109,0.57,0.44,0.16
+136,Desert Parade,June Theory,indie pop,romantic,0.86,168,0.56,0.57,0.37
+137,Urban Engine,Signal Choir,country,energetic,0.23,81,0.78,0.74,0.51
+138,Arctic Circuit,Echo Harbor,metal,intense,0.59,132,0.41,0.55,0.09
+139,Tidal Skyline,Fable District,folk,nostalgic,0.82,166,0.40,0.48,0.64
+140,Crimson Echo,June Theory,house,peaceful,0.22,83,0.61,0.33,0.11
+141,Silver Canvas,Signal Choir,classical,romantic,0.49,122,0.60,0.65,0.98
+142,Golden Waves,Echo Harbor,hip-hop,energetic,0.78,154,0.82,0.82,0.11
+143,Velvet Mirage,Fable District,blues,intense,0.21,84,0.45,0.44,0.69
+144,Neon Rhythm,June Theory,reggae,moody,0.64,135,0.41,0.59,0.39
+145,Midnight Orbit,Signal Choir,r&b,euphoric,0.74,152,0.97,0.91,0.31
+146,Solar Parade,Echo Harbor,edm,romantic,0.20,77,0.64,0.54,0.00
+147,Lunar Engine,Fable District,latin,energetic,0.54,125,0.69,0.90,0.33
+148,Electric Circuit,June Theory,afrobeats,intense,0.92,179,0.49,0.52,0.30
+149,Amber Skyline,Signal Choir,punk,moody,0.19,79,0.45,0.48,0.07
+150,Ivory Echo,Echo Harbor,soul,euphoric,0.44,115,0.84,0.99,0.47
+151,Obsidian Canvas,Fable District,dnb,soulful,0.88,167,0.58,0.59,0.01
+152,Wild Waves,June Theory,pop,dreamy,0.18,80,0.56,0.44,0.22
+153,Quiet Mirage,Signal Choir,lofi,intense,0.59,129,0.36,0.41,0.66
+154,Rapid Rhythm,Echo Harbor,rock,moody,0.84,165,0.49,0.56,0.17
+155,Coastal Orbit,Fable District,ambient,euphoric,0.39,102,0.88,0.88,0.80
+156,Desert Parade,June Theory,jazz,soulful,0.49,119,0.45,0.48,0.57
+157,Urban Engine,Signal Choir,synthwave,dreamy,0.80,163,0.60,0.52,0.25
+158,Arctic Circuit,Echo Harbor,indie pop,chill,0.38,103,0.59,0.57,0.25
+159,Tidal Skyline,Fable District,country,focused,0.64,141,0.63,0.50,0.60
+160,Crimson Echo,June Theory,metal,euphoric,0.76,152,0.92,0.96,0.00
+161,Blinding Lights,The Weeknd,synthwave,euphoric,0.86,171,0.76,0.74,0.01
+162,Levitating,Dua Lipa,pop,uplifting,0.82,103,0.91,0.80,0.06
+163,Bad Guy,Billie Eilish,pop,moody,0.43,135,0.56,0.70,0.33
+164,Shape of You,Ed Sheeran,pop,happy,0.78,96,0.93,0.82,0.18
+165,Uptown Funk,Mark Ronson ft. Bruno Mars,soul,energetic,0.88,115,0.93,0.86,0.02
+166,Rolling in the Deep,Adele,pop,intense,0.76,105,0.51,0.73,0.13
+167,Stayin Alive,Bee Gees,pop,uplifting,0.81,104,0.89,0.79,0.04
+168,Billie Jean,Michael Jackson,pop,confident,0.79,117,0.82,0.81,0.02
+169,Smells Like Teen Spirit,Nirvana,rock,intense,0.91,117,0.48,0.50,0.01
+170,Bohemian Rhapsody,Queen,rock,intense,0.40,72,0.40,0.39,0.27
+171,Hotel California,Eagles,rock,nostalgic,0.51,75,0.62,0.58,0.35
+172,Sweet Child O Mine,Guns N Roses,rock,confident,0.88,125,0.63,0.64,0.07
+173,Take Five,Dave Brubeck,jazz,focused,0.35,174,0.48,0.43,0.82
+174,So What,Miles Davis,jazz,chill,0.30,138,0.42,0.39,0.86
+175,Fly Me to the Moon,Frank Sinatra,jazz,romantic,0.46,119,0.71,0.55,0.73
+176,Clair de Lune,Claude Debussy,classical,peaceful,0.13,66,0.38,0.20,0.98
+177,Nocturne Op 9 No 2,Frederic Chopin,classical,dreamy,0.10,62,0.36,0.18,0.99
+178,Canon in D,Johann Pachelbel,classical,peaceful,0.19,62,0.46,0.24,0.97
+179,Get Lucky,Daft Punk,house,happy,0.81,116,0.89,0.80,0.04
+180,Titanium,David Guetta ft. Sia,edm,intense,0.90,126,0.55,0.67,0.05
+181,Levels,Avicii,edm,euphoric,0.92,126,0.74,0.78,0.06
+182,One More Time,Daft Punk,house,euphoric,0.89,123,0.80,0.84,0.04
+183,Lose Yourself,Eminem,hip-hop,intense,0.84,171,0.51,0.74,0.01
+184,HUMBLE,Kendrick Lamar,hip-hop,confident,0.76,150,0.42,0.82,0.01
+185,Juicy,The Notorious B.I.G.,hip-hop,nostalgic,0.74,96,0.84,0.88,0.11
+186,No Woman No Cry,Bob Marley & The Wailers,reggae,relaxed,0.41,79,0.74,0.68,0.57
+187,Three Little Birds,Bob Marley & The Wailers,reggae,happy,0.56,75,0.90,0.76,0.49
+188,Redemption Song,Bob Marley & The Wailers,reggae,peaceful,0.29,116,0.56,0.45,0.86
+189,Tennessee Whiskey,Chris Stapleton,country,soulful,0.37,82,0.49,0.51,0.61
+190,Take Me Home Country Roads,John Denver,country,nostalgic,0.58,82,0.82,0.64,0.45
+191,Jolene,Dolly Parton,country,intense,0.64,111,0.74,0.71,0.36
+192,Dreams,Fleetwood Mac,folk,dreamy,0.55,120,0.67,0.65,0.19
+193,Fast Car,Tracy Chapman,folk,melancholic,0.31,104,0.34,0.53,0.59
+194,Aint No Sunshine,Bill Withers,soul,melancholic,0.30,76,0.41,0.48,0.79
+195,Lets Stay Together,Al Green,soul,romantic,0.52,102,0.86,0.69,0.45
+196,Back to Black,Amy Winehouse,r&b,moody,0.33,124,0.38,0.54,0.66
+197,Adore You,Harry Styles,indie pop,romantic,0.60,99,0.57,0.68,0.23
+198,Midnight City,M83,synthwave,energetic,0.80,105,0.68,0.72,0.05
+199,Around the World,Daft Punk,house,focused,0.84,121,0.59,0.78,0.03
+200,Enter Sandman,Metallica,metal,intense,0.93,123,0.54,0.45,0.01
